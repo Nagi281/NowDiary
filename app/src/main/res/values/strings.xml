@@ -2,4 +2,5 @@
     <string name="app_name">Nagi Now Diary</string>
     <string name="inputBlank">This field cannot be blank</string>
     <string name="forgotPassword2">"Forgot Your Password? Do not worry!\n(If you have your email :D)"</string>
+    <string name="termAgree">by <b>continuing</b>, you agree with our <u>term</u> and <u>private policy</u></string>
 </resources>

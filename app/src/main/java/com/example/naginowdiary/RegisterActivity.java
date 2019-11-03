@@ -1,7 +1,6 @@
 package com.example.naginowdiary;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.naginowdiary.model.JournalItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,12 +22,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
-
 public class RegisterActivity extends AppCompatActivity {
     private EditText mEdtEmail, mEdtPassword, mEdtConfirm, mEdtNickname;
     private Button mBtnSignUp, mBtnCancel;
     private ProgressBar progressBar;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         mBtnSignUp = findViewById(R.id.btn_signUp);
         mBtnCancel = findViewById(R.id.btn_back_to_login);
         progressBar = findViewById(R.id.pb_register);
+        auth = FirebaseAuth.getInstance();
     }
 
     private void addEventListener() {
@@ -93,7 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void createUser(String email, String password, final String nickname) {
         progressBar.setVisibility(View.VISIBLE);
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -137,7 +134,8 @@ public class RegisterActivity extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                     } else {
-                                                        Toast.makeText(RegisterActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(RegisterActivity.this,
+                                                                "Wrong", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });

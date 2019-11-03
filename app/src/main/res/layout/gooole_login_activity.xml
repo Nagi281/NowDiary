@@ -47,37 +47,60 @@
                 android:inputType="textPassword"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btn_login"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Go"
-            android:textColor="@color/colorLightBlue"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_reset_password"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Forgot Password?"
-            android:textAllCaps="false"
-            android:textColor="@color/colorLightBlue"
-            android:textSize="20sp" />
+            <Button
+                android:id="@+id/btn_reset_password"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="5dp"
+                android:text="Forgot Password?"
+                android:textAllCaps="false"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btn_signUp"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Sign Up Here!"
-            android:textAllCaps="false"
-            android:textColor="@color/colorLightBlue"
-            android:textSize="20sp" />
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:text="Go"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_signUp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Sign Up Here!"
+                android:textAllCaps="false"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="20sp" />
+
+            <com.shobhitpuri.custombuttons.GoogleSignInButton
+                android:id="@+id/btn_signUpWithGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:text="Sign up with Google"
+                app:isDarkTheme="true" />
+        </RelativeLayout>
     </LinearLayout>
 
     <ProgressBar

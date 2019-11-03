@@ -86,9 +86,13 @@ public class MainActivity extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         journalList.clear();
-                                                        Toast.makeText(MainActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(MainActivity.this,
+                                                                "Login successfully",
+                                                                Toast.LENGTH_SHORT).show();
                                                     } else {
-                                                        Toast.makeText(MainActivity.this, "Add userId failed", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(MainActivity.this,
+                                                                "Add userId failed",
+                                                                Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });
@@ -166,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Intent intent = new Intent(MainActivity.this, AddJournalActivity.class);
+                                Intent intent = new Intent(MainActivity.this,
+                                        AddJournalActivity.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable("journalItem", journalList.get(position));
                                 intent.putExtra("package", bundle);
@@ -192,7 +197,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                LoginActivity.mGoogleSignInClient.signOut()
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+
+                                }
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                            }
+                        });
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -222,9 +236,11 @@ public class MainActivity extends AppCompatActivity {
                         journalList.add(journalItem);
                         sortJournal(journalList);
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(MainActivity.this, "Add Journal Complete", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,
+                                "Add Journal Complete", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(MainActivity.this, "Add failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,
+                                "Add failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -245,9 +261,11 @@ public class MainActivity extends AppCompatActivity {
                             journalList.get(editIndex).setContent(journalItem.getContent());
                             sortJournal(journalList);
                             adapter.notifyDataSetChanged();
-                            Toast.makeText(MainActivity.this, "Edit Journal Complete", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,
+                                    "Edit Journal Complete", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(MainActivity.this, "Edit failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,
+                                    "Edit failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
