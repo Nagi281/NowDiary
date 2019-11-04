@@ -70,14 +70,22 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
     private String getDateDifference(Date date) {
         String datediff = "";
         Calendar itemCal = Calendar.getInstance();
-        itemCal.setTime(date);
-        Date currentDate = Calendar.getInstance().getTime();
-        long timediff = currentDate.getTime() - date.getTime();
-        float daydiff = (float) timediff / (1000 * 60 * 60 * 24);
+        itemCal.set(Calendar.HOUR_OF_DAY, 1);
+        itemCal.set(Calendar.MINUTE, 1);
+        itemCal.set(Calendar.SECOND, 1);
+        Date currentDate = itemCal.getTime();
+        itemCal.setTime(date);9
+        itemCal.set(Calendar.HOUR_OF_DAY, 1);
+        itemCal.set(Calendar.MINUTE, 1);
+        itemCal.set(Calendar.SECOND, 1);
+        Date thatdate = itemCal.getTime();
+        long timediff = currentDate.getTime() - thatdate.getTime();
+        float daydiff = Math.round(((float) timediff / (1000 * 60 * 60 * 24)) * 10) / 10;
         if (daydiff == 0.0) {
             datediff += "Today";
         } else if (daydiff > 0 && daydiff < 7) {
-            datediff += (int) (daydiff + 1) + " days ago";
+            Log.d("Datediff", daydiff + "");
+            datediff += (int) Math.ceil(daydiff) + " days ago";
         } else {
             datediff += month[itemCal.get(Calendar.MONTH)] + " " + itemCal.get(Calendar.DATE);
             if (!(currentCal.get(Calendar.YEAR) == itemCal.get(Calendar.YEAR))) {
