@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                             "First time Using Journal App!",
                                             "Auto generated Journal!",
                                             123123);
-                                    item1.setId("foo");
+                                    item1.setId("0");
                                     journalList.add(item1);
                                     Log.d("login", "D123");
                                     mDbRoot.child(userId).child("journal").setValue(journalList)

@@ -72,12 +72,12 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
         Calendar itemCal = Calendar.getInstance();
         itemCal.setTime(date);
         Date currentDate = Calendar.getInstance().getTime();
-        long diff = currentDate.getTime() - date.getTime();
-        diff /= (1000 * 60 * 60 * 24);
-        if (diff == 0) {
+        long timediff = currentDate.getTime() - date.getTime();
+        float daydiff = (float) timediff / (1000 * 60 * 60 * 24);
+        if (daydiff == 0.0) {
             datediff += "Today";
-        } else if (diff > 0 && diff < 7) {
-            datediff += diff + " days ago";
+        } else if (daydiff > 0 && daydiff < 7) {
+            datediff += (int) (daydiff + 1) + " days ago";
         } else {
             datediff += month[itemCal.get(Calendar.MONTH)] + " " + itemCal.get(Calendar.DATE);
             if (!(currentCal.get(Calendar.YEAR) == itemCal.get(Calendar.YEAR))) {
