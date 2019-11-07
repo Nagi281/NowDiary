@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 mDbJournal.removeEventListener(this);
                 adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -166,14 +167,19 @@ public class MainActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Intent intent = new Intent(MainActivity.this,
-                                        AddJournalActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("journalItem", journalList.get(position));
-                                intent.putExtra("package", bundle);
-                                intent.putExtra("request", REQUEST_EDIT_JOURNAL);
-                                editIndex = position;
-                                startActivityForResult(intent, REQUEST_EDIT_JOURNAL);
+                                if (!journalList.get(position).getId().equals("0")) {
+                                    Intent intent = new Intent(MainActivity.this,
+                                            AddJournalActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("journalItem", journalList.get(position));
+                                    intent.putExtra("package", bundle);
+                                    intent.putExtra("request", REQUEST_EDIT_JOURNAL);
+                                    editIndex = position;
+                                    startActivityForResult(intent, REQUEST_EDIT_JOURNAL);
+                                } else {
+                                    Toast.makeText(MainActivity.this, "You cannot change this journal",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                             @Override
