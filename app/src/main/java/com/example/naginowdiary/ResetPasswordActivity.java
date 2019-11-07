@@ -1,7 +1,6 @@
 package com.example.naginowdiary;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +36,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Log.d("reset password", "Email sent.");
                                                 String result = "Reset Email sent! " +
                                                         "Please check your Email!";
                                                 Toast.makeText(ResetPasswordActivity.this,

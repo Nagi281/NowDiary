@@ -2,7 +2,6 @@ package com.example.naginowdiary.customAdapter;
 
 import android.app.Activity;
 import android.graphics.PorterDuff;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +73,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
         itemCal.set(Calendar.MINUTE, 1);
         itemCal.set(Calendar.SECOND, 1);
         Date currentDate = itemCal.getTime();
-        itemCal.setTime(date);9
+        itemCal.setTime(date);
         itemCal.set(Calendar.HOUR_OF_DAY, 1);
         itemCal.set(Calendar.MINUTE, 1);
         itemCal.set(Calendar.SECOND, 1);
@@ -84,7 +83,6 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
         if (daydiff == 0.0) {
             datediff += "Today";
         } else if (daydiff > 0 && daydiff < 7) {
-            Log.d("Datediff", daydiff + "");
             datediff += (int) Math.ceil(daydiff) + " days ago";
         } else {
             datediff += month[itemCal.get(Calendar.MONTH)] + " " + itemCal.get(Calendar.DATE);

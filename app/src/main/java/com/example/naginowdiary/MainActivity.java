@@ -3,6 +3,7 @@ package com.example.naginowdiary;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -65,21 +66,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkForUserIdInDatabase() {
-        Log.d("login123", "checking for journal");
         mDbRoot.child(userId).child("journal")
                 .addListenerForSingleValueEvent(
                         new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                Log.d("login123", "D123");
                                 if (!dataSnapshot.exists()) {
                                     JournalItem item1 = new JournalItem(new Date(),
                                             "First time Using Journal App!",
                                             "Auto generated Journal!",
-                                            123123);
+                                            Color.parseColor("#bbdefb"));
                                     item1.setId("0");
                                     journalList.add(item1);
-                                    Log.d("login", "D123");
                                     mDbRoot.child(userId).child("journal").setValue(journalList)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
@@ -148,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
         mDbJournal.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("load Data", "D121231231231233");
                 journalList.clear();
 
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
@@ -159,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                 mDbJournal.removeEventListener(this);
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

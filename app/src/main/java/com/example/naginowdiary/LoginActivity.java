@@ -96,14 +96,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = mEdtEmail.getText().toString();
-                Log.d("verifyLogin", "1");
                 final String password = mEdtPassword.getText().toString();
                 if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     Toast.makeText(getApplicationContext(), "Enter Email address!", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Enter Password address!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("verifyLogin", "2");
                     progressBar.setVisibility(View.VISIBLE);
                     auth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -118,13 +116,11 @@ public class LoginActivity extends AppCompatActivity {
                                                 "Invalid email or Password", Toast.LENGTH_SHORT).show();
                                     } else {
                                         if (auth.getCurrentUser().isEmailVerified()) {
-                                            Log.d("verify", "Email verified");
                                             progressBar.setVisibility(View.GONE);
                                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                             finish();
                                         } else {
                                             //auth.signOut();
-                                            Log.d("verify", "Email not verified");
                                             Toast.makeText(LoginActivity.this, "Please verify your account first", Toast.LENGTH_SHORT).show();
                                         }
                                     }

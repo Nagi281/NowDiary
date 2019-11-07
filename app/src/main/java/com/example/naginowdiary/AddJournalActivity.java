@@ -171,7 +171,6 @@ public class AddJournalActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
-                        Log.d("hohoho", hourOfDay + " " + minute);
                         Calendar itemCal = Calendar.getInstance();
                         itemCal.setTime(editItem.getDate());
                         itemCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
